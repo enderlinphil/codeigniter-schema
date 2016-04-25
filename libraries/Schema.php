@@ -23,12 +23,13 @@ class Schema {
 		'integer' 	=> 'INT',
 		'int'		=> 'INT',
 		'bigint'	=> 'BIGINT',
-        'decimal'   => 'DECIMAL',
+        	'decimal'   	=> 'DECIMAL',
 		'string' 	=> 'VARCHAR', 
 		'varchar'	=> 'VARCHAR',
 		'char'		=> 'CHAR',
 		'text' 		=> 'TEXT', 
-        'longtext' 	=> 'LONGTEXT', 
+        	'longtext' 	=> 'LONGTEXT',
+        	'blob'		=> 'BLOB',
 		'date' 		=> 'DATE', 
 		'datetime' 	=> 'DATETIME', 
 		'boolean' 	=> 'TINYINT',
@@ -54,6 +55,13 @@ class Schema {
             $callback($table_definition);
             $table_definition->create_table();
         }
+    }
+    
+    static public function drop_table($table_name, $if_exists = FALSE) {
+        $ci =& get_instance();
+        $ci->load->dbforge();
+        
+        $ci->dbforge->drop_table($table_name, $if_exists);
     }
     
     static public function add_column($table, $name, $type, $options = array(), $after_column = '') {
@@ -222,6 +230,12 @@ class Schema_Table_Definition {
     public function longtext($column_name, $options = array()) {
         $this->add_definition_rule($column_name, array(
             'type' => 'LONGTEXT'
+        ), $options);
+    }
+    
+    public function blob($column_name, $options = array()) {
+        $this->add_definition_rule($column_name, array(
+            'type' => 'BLOB'
         ), $options);
     }
     
