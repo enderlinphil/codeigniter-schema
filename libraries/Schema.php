@@ -23,7 +23,7 @@ class Schema {
 		'integer' 	=> 'INT',
 		'int'		=> 'INT',
 		'bigint'	=> 'BIGINT',
-		'decimal'   	=> 'DECIMAL',
+		'decimal'	=> 'DECIMAL',
 		'string' 	=> 'VARCHAR', 
 		'varchar'	=> 'VARCHAR',
 		'char'		=> 'CHAR',
